@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+---
+
+<BaseLayout
+  title="Privacy Policy | Alar Võrk — Sales Architect"
+  description="Privacy policy for alarvork.com — how we handle your data and cookie preferences."
+  path="/privacy-policy"
+  showCta={false}
+>
+  <Section class="!py-16 md:!py-24">
+    <div class="prose mx-auto max-w-3xl space-y-4" data-reveal>
+      <h1>Privacy policy</h1>
+      <p>
+        This site is operated by Abacto Consulting. We collect information you provide through
+        the contact form (name, email, company, and message) solely to respond to your enquiry.
+      </p>
+      <p>
+        If you accept analytics cookies, we use Google Analytics to understand how visitors use
+        this site. You can decline analytics cookies via the consent banner.
+      </p>
+      <p>
+        For questions about your data, contact
+        <a href="mailto:alar@alarvork.com" class="text-navy hover:underline">alar@alarvork.com</a>.
+      </p>
+    </div>
+  </Section>
+</BaseLayout>

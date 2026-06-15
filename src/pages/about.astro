@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import ProofStrip from '../components/ProofStrip.astro';
+
+const beliefs = [
+  'Clarity over complexity',
+  'Structure that enables growth, not bureaucracy',
+  'Action over theory',
+];
+---
+
+<BaseLayout
+  title="About Alar Võrk | Sales Architect"
+  description="30+ years in B2B sales — founder, rep, leader, and adviser. Alar Võrk helps companies build sales systems that deliver consistent, profitable growth."
+  path="/about"
+  ctaHeadline="Let's talk about your sales"
+>
+  <Section tone="navy" class="!py-16 md:!py-24">
+    <div class="hero-reveal container-page max-w-3xl">
+      <h1 class="text-white">
+        I've seen sales from every angle — founder, rep, leader, and adviser.
+      </h1>
+    </div>
+  </Section>
+
+  <Section>
+    <div class="grid items-start gap-10 md:grid-cols-2">
+      <img
+        src="/images/alar-portrait.jpg"
+        alt="Portrait of Alar Võrk, Sales Architect, in professional attire"
+        width="600"
+        height="750"
+        class="aspect-[4/5] w-full rounded-lg border border-pewter/20 bg-white object-cover"
+        loading="lazy"
+      />
+      <div class="space-y-4" data-reveal>
+        <p>
+          I'm Alar Võrk, a Sales Architect with 30+ years in B2B sales and business development.
+          My career spans founder-led ventures and international projects across Europe and Asia.
+        </p>
+        <p>
+          I've closed deals with global companies — IBM, Microsoft, HP, Bayer, Roche, Pfizer and
+          Schneider Electric — and learned to navigate complex buying processes and earn trust with
+          demanding customers. I've also founded and scaled ventures of my own, from media to
+          technology and smart lighting, so I know the founder's reality, not just the adviser's.
+        </p>
+        <p>
+          My journey started with a bold idea and no budget: I co-founded The Baltic Guide, a
+          travel-media venture before "startup" was a word. We didn't raise funding — we tested,
+          sold, and proved the concept in the market. That taught me the lesson that still drives
+          my work: sales isn't talent or charisma. It's a system. It needs structure, rhythm, and
+          execution.
+        </p>
+      </div>
+    </div>
+  </Section>
+
+  <Section class="!bg-white">
+    <div class="mx-auto max-w-3xl space-y-6" data-reveal>
+      <h2>What I believe</h2>
+      <ul class="space-y-3">
+        {beliefs.map((belief) => (
+          <li class="flex gap-3">
+            <span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-amber" aria-hidden="true"></span>
+            <span>{belief}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </Section>
+
+  <ProofStrip />
+</BaseLayout>

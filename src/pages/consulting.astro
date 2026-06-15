@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+
+const services = [
+  {
+    title: 'Sales Performance Audit',
+    summary: 'A structured diagnostic of why results stall.',
+    bullets: [
+      'Analyse structure, roles and workflows',
+      'Find the bottlenecks',
+      'Assess acquisition and account management',
+    ],
+    deliverable: 'diagnostic report + action list.',
+  },
+  {
+    title: 'Sales Process Optimisation Sprint',
+    summary: 'Redesign workflows for efficiency and conversion.',
+    bullets: [
+      'Map and fix acquisition and account flows',
+      'Remove friction',
+      'Build new process maps and playbook templates',
+    ],
+    deliverable: 'optimised process + team briefing.',
+  },
+  {
+    title: 'International Sales Preparation',
+    summary: 'Confident first steps abroad.',
+    bullets: [
+      'Select target regions',
+      'Define the channel model',
+      'Prepare logistics, compliance and customer expectations',
+    ],
+    deliverable: 'market-entry roadmap + international sales playbook.',
+  },
+  {
+    title: 'Fractional VP of Sales',
+    summary: 'Part-time senior leadership when you need it most.',
+    bullets: [
+      'Strategic direction',
+      'Team coaching and cadence',
+      'Hiring and process setup',
+    ],
+    deliverable: '1–2 days/week engagement.',
+  },
+  {
+    title: 'Strategic Account Growth Advisory',
+    summary: 'Turn account management into a growth driver.',
+    bullets: [
+      'Segment accounts by potential',
+      'Map stakeholders',
+      'Build upsell/cross-sell/renewal plans',
+    ],
+    deliverable: 'account plans + leadership cadence.',
+  },
+  {
+    title: 'Leadership Advisory Retainer',
+    summary: 'Senior advice without a full project.',
+    bullets: [
+      'Two advisory calls/month',
+      'Feedback on plans and messaging',
+      'Priority access',
+    ],
+    deliverable: 'month-to-month.',
+  },
+];
+---
+
+<BaseLayout
+  title="Consulting & Advisory | Alar Võrk — Sales Architect"
+  description="Hands-on B2B sales consulting — audits, process sprints, international preparation, fractional VP of Sales, and advisory retainers. Book a free 30-minute call."
+  path="/consulting"
+  ctaHeadline="Let's talk about your sales challenge"
+>
+  <Section tone="navy" class="!py-16 md:!py-24">
+    <div class="hero-reveal container-page max-w-3xl space-y-6">
+      <h1 class="text-white">Hands-on consulting and advisory.</h1>
+      <p class="hero-sub max-w-2xl text-lg text-white/90 md:text-xl">
+        Not every challenge needs a workshop. Sometimes you need direct help with your sales setup,
+        your processes, or your leadership. I meet you where you are and move you forward.
+      </p>
+    </div>
+  </Section>
+
+  <Section>
+    <div class="space-y-8">
+      <h2 data-reveal>Services</h2>
+      <div class="grid gap-6 lg:grid-cols-2">
+        {services.map((service, index) => (
+          <ServiceCard {...service} index={index} />
+        ))}
+      </div>
+    </div>
+  </Section>
+
+  <Section class="!bg-white">
+    <div class="mx-auto max-w-3xl space-y-4" data-reveal>
+      <h2>Why work with me</h2>
+      <ul class="list-disc space-y-2 pl-5">
+        <li>30+ years of international B2B sales leadership</li>
+        <li>Hands-on, from global deals to helping SMEs scale</li>
+        <li>You work directly with me, not a junior consultant</li>
+        <li>Practical, structured, action-oriented</li>
+      </ul>
+    </div>
+  </Section>
+</BaseLayout>

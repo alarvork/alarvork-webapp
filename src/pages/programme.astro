@@ -1,0 +1,162 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import Button from '../components/Button.astro';
+import ProofStrip from '../components/ProofStrip.astro';
+import ModuleCard from '../components/ModuleCard.astro';
+import { CALENDLY_URL } from '../consts';
+
+const modules = [
+  {
+    title: 'Founder Sales Playbook — the starting line.',
+    promise:
+      'Win your first deals with a clear story and a lightweight process (Identify → Outreach → Discovery → Demo → Proposal → Close). Leave with a starter cadence and your first 10 accounts mapped.',
+  },
+  {
+    title: 'Igniting the Sales Engine — from solo to team.',
+    promise:
+      'Build the first real sales system: split hunting from account care, set a weekly rhythm, and decide when and who to hire first — without drowning that hire in chaos.',
+  },
+  {
+    title: 'Sales Engine Performance Tuning — unlock hidden capacity.',
+    promise:
+      'Separate structure problems from people problems, reset roles, clean up incentives, and add capacity without simply adding headcount.',
+  },
+  {
+    title: 'From Service to Strategy — grow your accounts.',
+    promise:
+      'Move account management from answering the phone to deliberate growth: renewals, upsell, cross-sell, multi-threaded relationships, and the leadership rhythm to run it.',
+  },
+  {
+    title: 'Beyond Home Turf — first steps abroad.',
+    promise:
+      'Choose the right markets and go-to-market channel (direct, distributor, partner, agent), build lightweight local support, and handle the logistics that protect your reputation.',
+  },
+];
+
+const audience = [
+  {
+    title: 'Incubators & accelerators',
+    body: "Give founders repeatable sales processes, not theory, at exactly the stage they're in.",
+  },
+  {
+    title: 'Founders & SMEs',
+    body: 'A structured path from one-person sales to a tuned, growing engine, without expensive trial and error.',
+  },
+  {
+    title: 'Entrepreneurship & export programmes',
+    body: 'A ready-made curriculum covering the full sales-growth path, ending in market entry.',
+  },
+];
+
+const programmeSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Course',
+  name: 'Mechanics of the Sales Engine™',
+  description:
+    "A five-module B2B sales programme — from a founder's first deal to international growth. Delivered as a keynote or a hands-on workshop.",
+  provider: {
+    '@type': 'Person',
+    name: 'Alar Võrk',
+  },
+};
+---
+
+<BaseLayout
+  title="Mechanics of the Sales Engine™ | Alar Võrk — Sales Architect"
+  description="A five-module B2B sales programme for founders and SMEs — from first wins to international growth. Keynote or hands-on workshop. Book a free call."
+  path="/programme"
+  ctaHeadline="Bring Mechanics of the Sales Engine™ to your team"
+  jsonLd={programmeSchema}
+  showCta={false}
+>
+  <Section tone="navy" class="!py-16 md:!py-24">
+    <div class="hero-reveal container-page max-w-3xl space-y-6">
+      <h1 class="text-white">Mechanics of the Sales Engine™</h1>
+      <p class="hero-sub max-w-2xl text-lg text-white/90 md:text-xl">
+        Most sales training teaches salespeople to sell better. This programme teaches companies
+        to build the machine that sells.
+      </p>
+      <div class="hero-sub">
+        <Button href={CALENDLY_URL} variant="accent">Bring it to your team</Button>
+      </div>
+    </div>
+  </Section>
+
+  <Section>
+    <div class="mx-auto max-w-3xl space-y-4" data-reveal>
+      <h2>Companies don't fail because of their product. They fail because sales breaks down — at predictable points.</h2>
+      <p>
+        The founder sells alone and hits a ceiling. The first hire goes wrong. The team looks busy
+        but revenue stalls. Existing customers are serviced, not grown. Export becomes expensive
+        experimentation. Each stage gets treated as a surprise. None of them are.
+      </p>
+    </div>
+  </Section>
+
+  <Section class="!bg-white">
+    <div class="mx-auto max-w-3xl" data-reveal>
+      <p class="text-lg text-charcoal">
+        Every growing company passes through the same five stages — and each stage has its own
+        mechanics. Learn the mechanics, and growth stops being guesswork.
+      </p>
+    </div>
+  </Section>
+
+  <Section>
+    <div class="space-y-8">
+      <h2 data-reveal>The five modules</h2>
+      <div class="space-y-6">
+        {modules.map((module, index) => (
+          <ModuleCard {...module} index={index} />
+        ))}
+      </div>
+      <p class="text-charcoal" data-reveal>
+        Take the journey, or pick the stage you're at — every module stands alone.
+      </p>
+    </div>
+  </Section>
+
+  <Section class="!bg-white">
+    <div class="mx-auto max-w-3xl space-y-4" data-reveal>
+      <h2>How it's delivered</h2>
+      <p>
+        Hands-on and interactive — no lectures. Participants work on their own company in every
+        exercise. Each module ships with a practical toolkit: worksheets, templates, checklists, and
+        a 30/60/90 action plan. Delivered online or in person, half-day (3.5h) or full-day (7h).
+      </p>
+      <p>
+        An original framework built by a practitioner who has founded companies and built sales
+        organisations himself — this teaches what I've done, not what I've read.
+      </p>
+    </div>
+  </Section>
+
+  <Section>
+    <div class="space-y-8">
+      <h2 data-reveal>Who it's for</h2>
+      <div class="grid gap-6 md:grid-cols-3">
+        {audience.map((item, index) => (
+          <article class="card" data-reveal style={`--reveal-delay: ${index * 60}ms`}>
+            <h3>{item.title}</h3>
+            <p class="mt-3">{item.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </Section>
+
+  <ProofStrip />
+
+  <aside class="bg-navy py-12 text-white md:py-16" aria-label="Call to action">
+    <div class="container-page flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
+      <h2 class="max-w-2xl text-[1.7rem] font-semibold text-white md:text-[2.125rem]">
+        Ready to bring the programme to your team?
+      </h2>
+      <div class="flex flex-wrap gap-4">
+        <Button href={CALENDLY_URL} variant="accent">Book a free 30-minute call</Button>
+        <Button href="#" variant="secondary" onDark>Request the programme overview (PDF)</Button>
+      </div>
+    </div>
+  </aside>
+</BaseLayout>

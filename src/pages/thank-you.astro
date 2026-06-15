@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import Button from '../components/Button.astro';
+import { CALENDLY_URL } from '../consts';
+---
+
+<BaseLayout
+  title="Thank you | Alar Võrk — Sales Architect"
+  description="Thank you for your message. Alar Võrk will be in touch shortly."
+  path="/thank-you"
+  showCta={false}
+>
+  <Section class="!py-20 md:!py-28">
+    <div class="mx-auto max-w-2xl space-y-6 text-center" data-reveal>
+      <h1>Thank you</h1>
+      <p>Your message has been sent. I'll be in touch shortly.</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <Button href="/">Back to home</Button>
+        <Button href={CALENDLY_URL} variant="accent">Book a free 30-minute call</Button>
+      </div>
+    </div>
+  </Section>
+</BaseLayout>

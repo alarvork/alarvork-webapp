@@ -1,0 +1,211 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import { CALENDLY_URL, WEB3FORMS_KEY, EMAIL, PHONE, PHONE_HREF, LINKEDIN } from '../consts';
+---
+
+<BaseLayout
+  title="Contact | Alar Võrk — Sales Architect"
+  description="Book a free 30-minute call or send a message. The first step is a simple conversation — no obligation, no long forms."
+  path="/contact"
+  showCta={false}
+>
+  <Section tone="navy" class="!py-16 md:!py-24">
+    <div class="hero-reveal container-page max-w-3xl space-y-4">
+      <h1 class="text-white">Let's talk about your sales.</h1>
+      <p class="hero-sub text-lg text-white/90 md:text-xl">
+        The first step is a simple conversation — no obligation, no long forms.
+      </p>
+    </div>
+  </Section>
+
+  <Section>
+    <div class="grid gap-12 lg:grid-cols-2">
+      <div class="space-y-4">
+        <h2>Book a call</h2>
+        <div
+          class="min-h-[700px] overflow-hidden rounded-lg border border-pewter/20 bg-white"
+          data-calendly
+        >
+          <div class="flex h-[700px] flex-col items-center justify-center p-8" data-calendly-placeholder>
+            <button
+              type="button"
+              class="rounded-lg bg-amber px-7 py-4 font-semibold text-white hover:bg-amber-dark"
+              data-calendly-load
+            >
+              Book a free 30-minute call
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="space-y-6">
+        <h2>Send a message</h2>
+        <form
+          id="contact-form"
+          class="card space-y-4"
+          action="https://api.web3forms.com/submit"
+          method="POST"
+          novalidate
+        >
+          <input type="hidden" name="access_key" value={WEB3FORMS_KEY} />
+          <input type="hidden" name="redirect" value="https://www.alarvork.com/thank-you" />
+          <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" />
+
+          <div class="grid gap-4 sm:grid-cols-2">
+            <div>
+              <label for="first-name" class="mb-1 block text-sm font-semibold text-navy">
+                First name <span class="text-amber">*</span>
+              </label>
+              <input
+                id="first-name"
+                name="first_name"
+                type="text"
+                required
+                autocomplete="given-name"
+                class="w-full rounded-lg border border-pewter/30 px-3 py-2"
+              />
+            </div>
+            <div>
+              <label for="last-name" class="mb-1 block text-sm font-semibold text-navy">
+                Last name <span class="text-amber">*</span>
+              </label>
+              <input
+                id="last-name"
+                name="last_name"
+                type="text"
+                required
+                autocomplete="family-name"
+                class="w-full rounded-lg border border-pewter/30 px-3 py-2"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label for="position" class="mb-1 block text-sm font-semibold text-navy">Position</label>
+            <input
+              id="position"
+              name="position"
+              type="text"
+              autocomplete="organization-title"
+              class="w-full rounded-lg border border-pewter/30 px-3 py-2"
+            />
+          </div>
+
+          <div>
+            <label for="company" class="mb-1 block text-sm font-semibold text-navy">Company</label>
+            <input
+              id="company"
+              name="company"
+              type="text"
+              autocomplete="organization"
+              class="w-full rounded-lg border border-pewter/30 px-3 py-2"
+            />
+          </div>
+
+          <div>
+            <label for="email" class="mb-1 block text-sm font-semibold text-navy">
+              Email <span class="text-amber">*</span>
+            </label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              required
+              autocomplete="email"
+              class="w-full rounded-lg border border-pewter/30 px-3 py-2"
+            />
+          </div>
+
+          <div>
+            <label for="message" class="mb-1 block text-sm font-semibold text-navy">
+              Message <span class="text-amber">*</span>
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              rows="5"
+              required
+              class="w-full rounded-lg border border-pewter/30 px-3 py-2"
+            ></textarea>
+          </div>
+
+          <p id="form-error" class="hidden text-sm text-amber" role="alert"></p>
+
+          <button
+            type="submit"
+            class="rounded-lg bg-navy px-7 py-4 font-semibold text-white transition-colors hover:bg-navy-dark"
+          >
+            Send request
+          </button>
+        </form>
+      </div>
+    </div>
+  </Section>
+
+  <Section class="!bg-white">
+    <div class="grid gap-8 md:grid-cols-2">
+      <div class="space-y-4" data-reveal>
+        <h2>Direct details</h2>
+        <p>
+          <a href={`mailto:${EMAIL}`} class="text-navy hover:underline">{EMAIL}</a>
+          <br />
+          <a href={PHONE_HREF} class="text-navy hover:underline">{PHONE}</a>
+          <br />
+          <a href={LINKEDIN} class="text-navy hover:underline" rel="noopener noreferrer" target="_blank">
+            LinkedIn
+          </a>
+        </p>
+      </div>
+      <div class="space-y-4" data-reveal>
+        <h2>What to expect</h2>
+        <p>
+          A focused conversation on your situation. No obligation. If there's a fit, I'll outline
+          workshop or consulting options tailored to your business.
+        </p>
+      </div>
+    </div>
+  </Section>
+</BaseLayout>
+
+<script define:vars={{ calendlyUrl: CALENDLY_URL }}>
+  const form = document.getElementById('contact-form');
+  const errorEl = document.getElementById('form-error');
+
+  form?.addEventListener('submit', (event) => {
+    const requiredFields = form.querySelectorAll('[required]');
+    let valid = true;
+
+    requiredFields.forEach((field) => {
+      const input = field;
+      if (!input.value.trim()) {
+        valid = false;
+        input.setAttribute('aria-invalid', 'true');
+      } else {
+        input.removeAttribute('aria-invalid');
+      }
+    });
+
+    if (!valid) {
+      event.preventDefault();
+      errorEl?.classList.remove('hidden');
+      if (errorEl) errorEl.textContent = 'Please complete all required fields.';
+    }
+  });
+
+  const calendlyHost = document.querySelector('[data-calendly]');
+  const calendlyPlaceholder = document.querySelector('[data-calendly-placeholder]');
+  const calendlyLoad = document.querySelector('[data-calendly-load]');
+
+  calendlyLoad?.addEventListener('click', () => {
+    if (!calendlyHost || !calendlyPlaceholder) return;
+
+    const iframe = document.createElement('iframe');
+    iframe.src = `${calendlyUrl}?hide_gdpr_banner=1`;
+    iframe.title = 'Book a free 30-minute call with Alar Võrk';
+    iframe.className = 'h-[700px] w-full border-0';
+    iframe.loading = 'lazy';
+
+    calendlyPlaceholder.replaceWith(iframe);
+  });
+</script>

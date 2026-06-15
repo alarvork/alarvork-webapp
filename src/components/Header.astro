@@ -1,0 +1,118 @@
+---
+import Button from './Button.astro';
+import { CALENDLY_URL } from '../consts';
+
+const navLinks = [
+  { href: '/programme', label: 'Programme' },
+  { href: '/consulting', label: 'Consulting' },
+  { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="sticky top-0 z-50 border-b border-transparent bg-canvas/95 backdrop-blur-sm transition-shadow">
+  <div class="header-inner container-page flex items-center justify-between gap-4 py-4 transition-[padding]">
+    <a href="/" class="font-display text-base font-semibold text-navy md:text-lg">
+      Alar Võrk — Sales Architect
+    </a>
+
+    <nav class="hidden items-center gap-8 md:flex" aria-label="Main">
+      <ul class="flex items-center gap-6">
+        {
+          navLinks.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class:list={[
+                  'text-charcoal transition-colors hover:text-navy',
+                  currentPath === link.href && 'font-semibold text-navy',
+                ]}
+                aria-current={currentPath === link.href ? 'page' : undefined}
+              >
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <Button href={CALENDLY_URL} variant="accent" class="!px-5 !py-3 text-sm">
+        Book a call
+      </Button>
+    </nav>
+
+    <button
+      type="button"
+      class="inline-flex items-center justify-center rounded-lg border border-pewter/30 p-2 text-navy md:hidden"
+      aria-expanded="false"
+      aria-controls="mobile-nav"
+      aria-label="Open menu"
+      data-nav-toggle
+    >
+      <svg
+        class="h-6 w-6"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        aria-hidden="true"
+      >
+        <path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round"></path>
+      </svg>
+    </button>
+  </div>
+
+  <nav
+    id="mobile-nav"
+    class="hidden border-t border-pewter/20 bg-canvas md:hidden"
+    aria-label="Mobile"
+    data-mobile-nav
+  >
+    <ul class="container-page flex flex-col gap-1 py-4">
+      {
+        navLinks.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class:list={[
+                'block rounded-lg px-3 py-2 text-charcoal transition-colors hover:bg-white hover:text-navy',
+                currentPath === link.href && 'bg-white font-semibold text-navy',
+              ]}
+              aria-current={currentPath === link.href ? 'page' : undefined}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+      <li class="pt-2">
+        <Button href={CALENDLY_URL} variant="accent" class="w-full justify-center">
+          Book a call
+        </Button>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<script>
+  const toggle = document.querySelector('[data-nav-toggle]');
+  const mobileNav = document.querySelector('[data-mobile-nav]');
+
+  if (toggle && mobileNav) {
+    toggle.addEventListener('click', () => {
+      const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!isOpen));
+      toggle.setAttribute('aria-label', isOpen ? 'Open menu' : 'Close menu');
+      mobileNav.classList.toggle('hidden', isOpen);
+    });
+
+    mobileNav.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Open menu');
+        mobileNav.classList.add('hidden');
+      });
+    });
+  }
+</script>

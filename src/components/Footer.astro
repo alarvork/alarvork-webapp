@@ -1,0 +1,47 @@
+---
+import { EMAIL, PHONE, PHONE_HREF, LINKEDIN } from '../consts';
+
+const navLinks = [
+  { href: '/programme', label: 'Programme' },
+  { href: '/consulting', label: 'Consulting' },
+  { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
+];
+---
+
+<footer class="border-t border-pewter/20 bg-canvas py-12">
+  <div class="container-page space-y-8">
+    <p class="max-w-2xl text-charcoal">
+      Alar Võrk — Sales Architect. I help founders and SME leaders build the sales
+      systems that deliver consistent, profitable growth.
+    </p>
+
+    <nav aria-label="Footer">
+      <ul class="flex flex-wrap gap-x-6 gap-y-2">
+        {
+          navLinks.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class="text-charcoal transition-colors hover:text-navy"
+              >
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="flex flex-wrap gap-x-6 gap-y-2 text-charcoal">
+      <a href={`mailto:${EMAIL}`} class="hover:text-navy">{EMAIL}</a>
+      <a href={PHONE_HREF} class="hover:text-navy">{PHONE}</a>
+      <a href={LINKEDIN} class="hover:text-navy" rel="noopener noreferrer" target="_blank">
+        LinkedIn
+      </a>
+      <a href="/privacy-policy" class="hover:text-navy">Privacy Policy</a>
+    </div>
+
+    <p class="text-small text-pewter">© 2025 Abacto Consulting</p>
+  </div>
+</footer>

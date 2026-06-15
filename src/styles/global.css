@@ -1,1 +1,162 @@
 @import "tailwindcss";
+@import "@fontsource-variable/nunito-sans";
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/Satoshi-Variable.woff2") format("woff2");
+  font-weight: 300 900;
+  font-display: swap;
+  font-style: normal;
+}
+
+@theme {
+  --color-navy: #1a1a2e;
+  --color-navy-dark: #0f0f1a;
+  --color-amber: #f39c12;
+  --color-amber-dark: #e67e22;
+  --color-pewter: #7f8c8d;
+  --color-canvas: #fafbfc;
+  --color-charcoal: #2c3e50;
+
+  --font-sans: "Nunito Sans Variable", "Nunito Sans", -apple-system, "Segoe UI",
+    sans-serif;
+  --font-display: Satoshi, "Nunito Sans Variable", sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-canvas font-sans text-[17px] leading-relaxed text-charcoal antialiased md:text-[18px];
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display font-semibold leading-tight text-navy;
+  }
+
+  h1 {
+    @apply text-[2.4rem] md:text-[3rem];
+  }
+
+  h2 {
+    @apply text-[1.7rem] md:text-[2.125rem];
+  }
+
+  h3 {
+    @apply text-[1.1rem] md:text-[1.375rem];
+  }
+
+  small,
+  .text-small {
+    @apply text-sm;
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    @apply outline-2 outline-offset-2 outline-amber;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-6xl px-5 md:px-8;
+  }
+
+  .card {
+    @apply rounded-lg border border-pewter/20 bg-white p-6;
+  }
+
+  .hero-reveal h1,
+  .hero-reveal .hero-sub {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-reveal h1 {
+      animation: hero-fade-up 500ms ease-out forwards;
+    }
+
+    .hero-reveal .hero-sub {
+      animation: hero-fade-up 500ms ease-out 120ms forwards;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-reveal h1,
+    .hero-reveal .hero-sub {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+      opacity 500ms ease-out,
+      transform 500ms ease-out;
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  [data-reveal].in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-reveal] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+
+  header.scrolled {
+    @apply border-b border-pewter/20 shadow-sm;
+  }
+
+  header.scrolled .header-inner {
+    @apply py-3;
+  }
+}
+
+@layer utilities {
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  .focus\:not-sr-only:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: inherit;
+    margin: inherit;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+}
+
+@keyframes hero-fade-up {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

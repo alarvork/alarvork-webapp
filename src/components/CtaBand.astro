@@ -1,0 +1,19 @@
+---
+import Button from './Button.astro';
+import { CALENDLY_URL } from '../consts';
+
+interface Props {
+  headline: string;
+}
+
+const { headline } = Astro.props;
+---
+
+<aside class="bg-navy py-12 text-white md:py-16" aria-label="Call to action">
+  <div class="container-page flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
+    <h2 class="max-w-2xl text-[1.7rem] font-semibold text-white md:text-[2.125rem]">
+      {headline}
+    </h2>
+    <Button href={CALENDLY_URL} variant="accent">Book a free 30-minute call</Button>
+  </div>
+</aside>

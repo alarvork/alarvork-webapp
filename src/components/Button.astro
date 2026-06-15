@@ -1,0 +1,24 @@
+---
+interface Props {
+  href: string;
+  variant?: 'accent' | 'primary' | 'secondary';
+  onDark?: boolean;
+  class?: string;
+}
+
+const { href, variant = 'primary', onDark = false, class: className = '' } = Astro.props;
+
+const variants = {
+  accent:
+    'inline-flex items-center justify-center rounded-lg bg-amber px-7 py-4 font-semibold text-white transition-colors hover:bg-amber-dark',
+  primary:
+    'inline-flex items-center justify-center rounded-lg bg-navy px-7 py-4 font-semibold text-white transition-colors hover:bg-navy-dark',
+  secondary: onDark
+    ? 'inline-flex items-center justify-center rounded-lg border border-white/70 px-7 py-4 font-semibold text-white transition-colors hover:border-white hover:bg-white/10'
+    : 'inline-flex items-center justify-center rounded-lg border border-pewter px-7 py-4 font-semibold text-pewter transition-colors hover:border-charcoal hover:text-charcoal',
+};
+---
+
+<a href={href} class:list={[variants[variant], className]}>
+  <slot />
+</a>

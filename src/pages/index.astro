@@ -1,17 +1,119 @@
 ---
-import '../styles/global.css';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import Button from '../components/Button.astro';
+import ProofStrip from '../components/ProofStrip.astro';
+import { CALENDLY_URL } from '../consts';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>alarvork.com</title>
-	</head>
-	<body>
-		<h1 class="text-3xl font-bold">alarvork.com</h1>
-	</body>
-</html>
+<BaseLayout
+  title="Alar Võrk — Sales Architect | B2B Sales Systems & Training"
+  description="Sales Architect Alar Võrk helps founders and SME leaders build B2B sales systems — from first wins to international growth. Book a free 30-minute call."
+  path="/"
+>
+  <Section tone="navy" class="!py-16 md:!py-24">
+    <div class="hero-reveal container-page max-w-3xl space-y-6">
+      <h1 class="text-white">Build the machine that sells.</h1>
+      <p class="hero-sub max-w-2xl text-lg text-white/90 md:text-xl">
+        I'm Alar Võrk — a Sales Architect with 30+ years in B2B sales. I help founders
+        and SME leaders turn scattered effort into a sales system that delivers consistent,
+        profitable growth.
+      </p>
+      <div class="hero-sub flex flex-wrap gap-4">
+        <Button href={CALENDLY_URL} variant="accent">Book a free 30-minute call</Button>
+        <Button href="/programme" variant="secondary" onDark>See the programme →</Button>
+      </div>
+    </div>
+  </Section>
+
+  <ProofStrip />
+
+  <Section>
+    <div class="mx-auto max-w-3xl space-y-4" data-reveal>
+      <h2>Most advisers teach people to sell better. I help companies build the machine that sells.</h2>
+      <p>
+        Sales is an engine — roles, processes, incentives, and rhythm. Miss one part and you
+        drive with the handbrake on. My job isn't to replace your team; it's to give founders
+        and business leaders the structure to turn ideas into traction and results.
+      </p>
+    </div>
+  </Section>
+
+  <Section class="!bg-white">
+    <div class="space-y-8">
+      <h2 data-reveal>What I do</h2>
+      <div class="grid gap-6 md:grid-cols-3">
+        <a href="/consulting" class="card block transition-shadow hover:shadow-md" data-reveal style="--reveal-delay: 0ms">
+          <h3>New Business Development</h3>
+          <p class="mt-3">
+            Open new markets, find the right partners, and secure first wins — with a repeatable
+            way to keep unlocking growth.
+          </p>
+        </a>
+        <a href="/consulting" class="card block transition-shadow hover:shadow-md" data-reveal style="--reveal-delay: 60ms">
+          <h3>Sales Operations</h3>
+          <p class="mt-3">
+            Release the hidden potential in your existing team by redesigning roles, processes,
+            and rhythm so effort turns into growth.
+          </p>
+        </a>
+        <a href="/consulting" class="card block transition-shadow hover:shadow-md" data-reveal style="--reveal-delay: 120ms">
+          <h3>Account Management</h3>
+          <p class="mt-3">
+            Turn account management from reactive service into a proactive engine for long-term,
+            profitable growth.
+          </p>
+        </a>
+      </div>
+    </div>
+  </Section>
+
+  <Section tone="navy">
+    <div class="mx-auto max-w-3xl space-y-6" data-reveal>
+      <h2 class="text-white">Mechanics of the Sales Engine™</h2>
+      <p class="text-white/90">
+        A five-module B2B sales programme — from a founder's first deal to international growth.
+        Delivered as a keynote or a hands-on workshop. Take the full journey, or pick the stage
+        you're at.
+      </p>
+      <Button href="/programme" variant="accent">Explore the programme</Button>
+    </div>
+  </Section>
+
+  <Section>
+    <div class="space-y-8">
+      <h2 data-reveal>How it works — Assess · Design · Build</h2>
+      <ol class="grid gap-6 md:grid-cols-3">
+        <li class="card" data-reveal style="--reveal-delay: 0ms">
+          <p class="text-small font-semibold text-amber">1 — Assess</p>
+          <h3 class="mt-2">Understand the real situation</h3>
+          <p class="mt-3">
+            We start with clarity. I review your current sales approach, listen to how customers
+            actually buy, and pinpoint the bottlenecks holding growth back. Together we decide what
+            matters most — new business, sales structure, or account management — so we focus on
+            changes that create real impact.
+          </p>
+        </li>
+        <li class="card" data-reveal style="--reveal-delay: 60ms">
+          <p class="text-small font-semibold text-amber">2 — Design</p>
+          <h3 class="mt-2">Create the blueprint</h3>
+          <p class="mt-3">
+            Based on what we find, I design a practical system for your company: defined roles,
+            simpler processes, and a rhythm your team can sustain. For new markets, a market-entry
+            plan with first steps; for operations, a structure that frees your people to sell; for
+            accounts, a framework to grow existing customers.
+          </p>
+        </li>
+        <li class="card" data-reveal style="--reveal-delay: 120ms">
+          <p class="text-small font-semibold text-amber">3 — Build</p>
+          <h3 class="mt-2">Put the system into motion</h3>
+          <p class="mt-3">
+            I don't leave you with slides. I guide your team through the first steps — testing the
+            approach, running early meetings, implementing new workflows — so the system runs
+            smoothly and avoids the common pitfalls. When it works, it's yours to run and scale.
+          </p>
+        </li>
+      </ol>
+    </div>
+  </Section>
+</BaseLayout>

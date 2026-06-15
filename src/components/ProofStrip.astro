@@ -1,0 +1,51 @@
+---
+const stats = [
+  {
+    value: 30,
+    suffix: '+ years',
+    label: 'in B2B sales',
+  },
+  {
+    value: 10,
+    suffix: '+ markets',
+    label: 'across Europe & Asia',
+  },
+  {
+    value: 90,
+    suffix: '%+ win rate',
+    label: 'on international tenders',
+  },
+  {
+    value: 227,
+    suffix: '% of target',
+    label: 'during a recession',
+  },
+];
+---
+
+<div class="border-y border-pewter/20 bg-white py-8 md:py-10" data-proof-strip>
+  <div class="container-page space-y-4">
+    <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        stats.map((stat) => (
+          <li class="text-center lg:text-left">
+            <p class="font-display text-2xl font-semibold text-navy md:text-3xl">
+              <span
+                data-countup
+                data-countup-to={stat.value}
+                data-countup-suffix={stat.suffix}
+              >
+                {stat.value}
+                {stat.suffix}
+              </span>
+            </p>
+            <p class="text-small text-pewter">{stat.label}</p>
+          </li>
+        ))
+      }
+    </ul>
+    <p class="text-center text-small text-pewter lg:text-left">
+      Deals closed with IBM, Microsoft, Pfizer, Bayer, Roche, HP and Schneider Electric.
+    </p>
+  </div>
+</div>
