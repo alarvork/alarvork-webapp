@@ -73,8 +73,8 @@ const services = [
   path="/consulting"
   ctaHeadline="Let's talk about your sales challenge"
 >
-  <Section tone="navy" class="!py-16 md:!py-24">
-    <div class="hero-reveal container-page max-w-3xl space-y-6">
+  <Section tone="navy" class="!py-16 md:!py-24" animate={false}>
+    <div class="hero-reveal max-w-3xl space-y-6">
       <h1 class="text-white">Hands-on consulting and advisory.</h1>
       <p class="hero-sub max-w-2xl text-lg text-white/90 md:text-xl">
         Not every challenge needs a workshop. Sometimes you need direct help with your sales setup,
@@ -85,7 +85,7 @@ const services = [
 
   <Section>
     <div class="space-y-8">
-      <h2 data-reveal>Services</h2>
+      <h2 data-animate-child>Services</h2>
       <div class="grid gap-6 lg:grid-cols-2">
         {services.map((service, index) => (
           <ServiceCard {...service} index={index} />
@@ -95,7 +95,7 @@ const services = [
   </Section>
 
   <Section class="!bg-white">
-    <div class="mx-auto max-w-3xl space-y-4" data-reveal>
+    <div class="mx-auto max-w-3xl space-y-4" data-animate-child>
       <h2>Why work with me</h2>
       <ul class="list-disc space-y-2 pl-5">
         <li>30+ years of international B2B sales leadership</li>

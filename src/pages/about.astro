@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Section from '../components/Section.astro';
 import ProofStrip from '../components/ProofStrip.astro';
+import { ABOUT_PORTRAIT } from '../consts';
 
 const beliefs = [
   'Clarity over complexity',
@@ -16,8 +17,8 @@ const beliefs = [
   path="/about"
   ctaHeadline="Let's talk about your sales"
 >
-  <Section tone="navy" class="!py-16 md:!py-24">
-    <div class="hero-reveal container-page max-w-3xl">
+  <Section tone="navy" class="!py-16 md:!py-24" animate={false}>
+    <div class="hero-reveal max-w-3xl">
       <h1 class="text-white">
         I've seen sales from every angle — founder, rep, leader, and adviser.
       </h1>
@@ -26,15 +27,19 @@ const beliefs = [
 
   <Section>
     <div class="grid items-start gap-10 md:grid-cols-2">
-      <img
-        src="/images/alar-portrait.jpg"
-        alt="Portrait of Alar Võrk, Sales Architect, in professional attire"
-        width="600"
-        height="750"
-        class="aspect-[4/5] w-full rounded-lg border border-pewter/20 bg-white object-cover"
-        loading="lazy"
-      />
-      <div class="space-y-4" data-reveal>
+      <picture>
+        <source srcset={ABOUT_PORTRAIT.webp} type="image/webp" />
+        <img
+          src={ABOUT_PORTRAIT.jpg}
+          alt={ABOUT_PORTRAIT.alt}
+          width={ABOUT_PORTRAIT.width}
+          height={ABOUT_PORTRAIT.height}
+          class="aspect-square w-full rounded-lg border border-pewter/20 bg-white object-cover"
+          loading="lazy"
+          data-animate-child
+        />
+      </picture>
+      <div class="space-y-4" data-animate-child style="--reveal-delay: 60ms">
         <p>
           I'm Alar Võrk, a Sales Architect with 30+ years in B2B sales and business development.
           My career spans founder-led ventures and international projects across Europe and Asia.
@@ -57,7 +62,7 @@ const beliefs = [
   </Section>
 
   <Section class="!bg-white">
-    <div class="mx-auto max-w-3xl space-y-6" data-reveal>
+    <div class="mx-auto max-w-3xl space-y-6" data-animate-child>
       <h2>What I believe</h2>
       <ul class="space-y-3">
         {beliefs.map((belief) => (

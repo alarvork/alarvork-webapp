@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Section from '../components/Section.astro';
 import Button from '../components/Button.astro';
 import ProofStrip from '../components/ProofStrip.astro';
-import { CALENDLY_URL } from '../consts';
+import { CALENDLY_URL, HERO_PORTRAIT } from '../consts';
 ---
 
 <BaseLayout
@@ -11,17 +11,32 @@ import { CALENDLY_URL } from '../consts';
   description="Sales Architect Alar Võrk helps founders and SME leaders build B2B sales systems — from first wins to international growth. Book a free 30-minute call."
   path="/"
 >
-  <Section tone="navy" class="!py-16 md:!py-24">
-    <div class="hero-reveal container-page max-w-3xl space-y-6">
-      <h1 class="text-white">Build the machine that sells.</h1>
-      <p class="hero-sub max-w-2xl text-lg text-white/90 md:text-xl">
-        I'm Alar Võrk — a Sales Architect with 30+ years in B2B sales. I help founders
-        and SME leaders turn scattered effort into a sales system that delivers consistent,
-        profitable growth.
-      </p>
-      <div class="hero-sub flex flex-wrap gap-4">
-        <Button href={CALENDLY_URL} variant="accent">Book a free 30-minute call</Button>
-        <Button href="/programme" variant="secondary" onDark>See the programme →</Button>
+  <Section tone="navy" class="!py-16 md:!py-24" animate={false}>
+    <div class="grid items-center gap-10 md:grid-cols-2 md:gap-12">
+      <div class="hero-reveal space-y-6">
+        <h1 class="text-white">Build the machine that sells.</h1>
+        <p class="hero-sub max-w-2xl text-lg text-white/90 md:text-xl">
+          I'm Alar Võrk — a Sales Architect with 30+ years in B2B sales. I help founders
+          and SME leaders turn scattered effort into a sales system that delivers consistent,
+          profitable growth.
+        </p>
+        <div class="hero-sub flex flex-wrap gap-4">
+          <Button href={CALENDLY_URL} variant="accent">Book a free 30-minute call</Button>
+          <Button href="/programme" variant="secondary" onDark>See the programme →</Button>
+        </div>
+      </div>
+      <div class="hero-reveal hero-sub">
+        <picture>
+          <source srcset={HERO_PORTRAIT.webp} type="image/webp" />
+          <img
+            src={HERO_PORTRAIT.jpg}
+            alt={HERO_PORTRAIT.alt}
+            width={HERO_PORTRAIT.width}
+            height={HERO_PORTRAIT.height}
+            class="mx-auto aspect-[4/5] w-full max-w-sm rounded-lg border border-white/20 object-cover md:ml-auto md:max-w-md"
+            fetchpriority="high"
+          />
+        </picture>
       </div>
     </div>
   </Section>
@@ -29,7 +44,7 @@ import { CALENDLY_URL } from '../consts';
   <ProofStrip />
 
   <Section>
-    <div class="mx-auto max-w-3xl space-y-4" data-reveal>
+    <div class="mx-auto max-w-3xl space-y-4" data-animate-child>
       <h2>Most advisers teach people to sell better. I help companies build the machine that sells.</h2>
       <p>
         Sales is an engine — roles, processes, incentives, and rhythm. Miss one part and you
@@ -41,24 +56,27 @@ import { CALENDLY_URL } from '../consts';
 
   <Section class="!bg-white">
     <div class="space-y-8">
-      <h2 data-reveal>What I do</h2>
+      <h2 data-animate-child>What I do</h2>
       <div class="grid gap-6 md:grid-cols-3">
-        <a href="/consulting" class="card block transition-shadow hover:shadow-md" data-reveal style="--reveal-delay: 0ms">
-          <h3>New Business Development</h3>
+        <a href="/consulting" class="card block border-l-4 border-l-amber" data-animate-child style="--reveal-delay: 60ms">
+          <p class="text-small font-semibold text-amber">01</p>
+          <h3 class="card-title mt-2">New Business Development</h3>
           <p class="mt-3">
             Open new markets, find the right partners, and secure first wins — with a repeatable
             way to keep unlocking growth.
           </p>
         </a>
-        <a href="/consulting" class="card block transition-shadow hover:shadow-md" data-reveal style="--reveal-delay: 60ms">
-          <h3>Sales Operations</h3>
+        <a href="/consulting" class="card block border-l-4 border-l-amber" data-animate-child style="--reveal-delay: 120ms">
+          <p class="text-small font-semibold text-amber">02</p>
+          <h3 class="card-title mt-2">Sales Operations</h3>
           <p class="mt-3">
             Release the hidden potential in your existing team by redesigning roles, processes,
             and rhythm so effort turns into growth.
           </p>
         </a>
-        <a href="/consulting" class="card block transition-shadow hover:shadow-md" data-reveal style="--reveal-delay: 120ms">
-          <h3>Account Management</h3>
+        <a href="/consulting" class="card block border-l-4 border-l-amber" data-animate-child style="--reveal-delay: 180ms">
+          <p class="text-small font-semibold text-amber">03</p>
+          <h3 class="card-title mt-2">Account Management</h3>
           <p class="mt-3">
             Turn account management from reactive service into a proactive engine for long-term,
             profitable growth.
@@ -69,22 +87,24 @@ import { CALENDLY_URL } from '../consts';
   </Section>
 
   <Section tone="navy">
-    <div class="mx-auto max-w-3xl space-y-6" data-reveal>
-      <h2 class="text-white">Mechanics of the Sales Engine™</h2>
-      <p class="text-white/90">
+    <div class="mx-auto max-w-3xl space-y-6">
+      <h2 class="text-white" data-animate-child>Mechanics of the Sales Engine™</h2>
+      <p class="text-white/90" data-animate-child style="--reveal-delay: 60ms">
         A five-module B2B sales programme — from a founder's first deal to international growth.
         Delivered as a keynote or a hands-on workshop. Take the full journey, or pick the stage
         you're at.
       </p>
-      <Button href="/programme" variant="accent">Explore the programme</Button>
+      <div data-animate-child style="--reveal-delay: 120ms">
+        <Button href="/programme" variant="accent">Explore the programme</Button>
+      </div>
     </div>
   </Section>
 
   <Section>
     <div class="space-y-8">
-      <h2 data-reveal>How it works — Assess · Design · Build</h2>
+      <h2 data-animate-child>How it works — Assess · Design · Build</h2>
       <ol class="grid gap-6 md:grid-cols-3">
-        <li class="card" data-reveal style="--reveal-delay: 0ms">
+        <li class="card" data-animate-child style="--reveal-delay: 60ms">
           <p class="text-small font-semibold text-amber">1 — Assess</p>
           <h3 class="mt-2">Understand the real situation</h3>
           <p class="mt-3">
@@ -94,7 +114,7 @@ import { CALENDLY_URL } from '../consts';
             changes that create real impact.
           </p>
         </li>
-        <li class="card" data-reveal style="--reveal-delay: 60ms">
+        <li class="card" data-animate-child style="--reveal-delay: 120ms">
           <p class="text-small font-semibold text-amber">2 — Design</p>
           <h3 class="mt-2">Create the blueprint</h3>
           <p class="mt-3">
@@ -104,7 +124,7 @@ import { CALENDLY_URL } from '../consts';
             accounts, a framework to grow existing customers.
           </p>
         </li>
-        <li class="card" data-reveal style="--reveal-delay: 120ms">
+        <li class="card" data-animate-child style="--reveal-delay: 180ms">
           <p class="text-small font-semibold text-amber">3 — Build</p>
           <h3 class="mt-2">Put the system into motion</h3>
           <p class="mt-3">

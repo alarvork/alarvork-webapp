@@ -1,15 +1,17 @@
 ---
 interface Props {
   tone?: 'canvas' | 'navy';
+  animate?: boolean;
   class?: string;
   id?: string;
 }
 
-const { tone = 'canvas', class: className = '', id } = Astro.props;
+const { tone = 'canvas', animate: shouldAnimate = true, class: className = '', id } = Astro.props;
 ---
 
 <section
   id={id}
+  data-animate-section={shouldAnimate ? '' : undefined}
   class:list={[
     'py-14 md:py-20',
     tone === 'navy' ? 'bg-navy text-white' : 'bg-canvas text-charcoal',

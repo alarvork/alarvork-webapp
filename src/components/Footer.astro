@@ -1,5 +1,5 @@
 ---
-import { EMAIL, PHONE, PHONE_HREF, LINKEDIN } from '../consts';
+import { EMAIL, LINKEDIN } from '../consts';
 
 const navLinks = [
   { href: '/programme', label: 'Programme' },
@@ -35,7 +35,6 @@ const navLinks = [
 
     <div class="flex flex-wrap gap-x-6 gap-y-2 text-charcoal">
       <a href={`mailto:${EMAIL}`} class="hover:text-navy">{EMAIL}</a>
-      <a href={PHONE_HREF} class="hover:text-navy">{PHONE}</a>
       <a href={LINKEDIN} class="hover:text-navy" rel="noopener noreferrer" target="_blank">
         LinkedIn
       </a>
