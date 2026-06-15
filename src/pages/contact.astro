@@ -24,8 +24,13 @@ import { CALENDLY_URL, WEB3FORMS_KEY, EMAIL, LINKEDIN } from '../consts';
     <div class="grid gap-12 lg:grid-cols-2">
       <div class="space-y-4">
         <h2>Book a call</h2>
-        <div class="card">
+        <div class="card space-y-3">
           <Button href={CALENDLY_URL} variant="accent">Book a free 30-minute call</Button>
+          <p class="text-small text-pewter">
+            Booking opens Calendly in a new tab. See our
+            <a href="/privacy-policy" class="text-navy underline">Privacy Policy</a> for how your
+            data is handled.
+          </p>
         </div>
       </div>
 
@@ -121,6 +126,12 @@ import { CALENDLY_URL, WEB3FORMS_KEY, EMAIL, LINKEDIN } from '../consts';
           </div>
 
           <p id="form-error" class="hidden text-sm text-amber" role="alert"></p>
+
+          <p class="text-small text-pewter">
+            By submitting this form, you agree that we may process your details as described in our
+            <a href="/privacy-policy" class="text-navy underline">Privacy Policy</a> to respond to
+            your enquiry.
+          </p>
 
           <Button type="submit" variant="primary">Send request</Button>
         </form>

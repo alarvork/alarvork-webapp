@@ -107,8 +107,8 @@ const schemas = [personSchema, serviceSchema, ...extraSchemas];
     >
       <div class="container-page flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <p class="text-small text-charcoal">
-          We use cookies to understand how visitors use this site. You can accept analytics
-          cookies or decline.
+          We use analytics cookies to understand how visitors use this site, only if you accept.
+          See our <a href="/privacy-policy" class="text-navy underline">Privacy Policy</a>.
         </p>
         <div class="flex shrink-0 gap-3">
           <button
@@ -134,6 +134,15 @@ const schemas = [personSchema, serviceSchema, ...extraSchemas];
       const banner = document.getElementById('cookie-consent');
       const acceptBtn = document.getElementById('cookie-accept');
       const declineBtn = document.getElementById('cookie-decline');
+      const settingsBtns = document.querySelectorAll('#cookie-settings');
+
+      function showBanner() {
+        banner?.classList.remove('hidden');
+      }
+
+      function hideBanner() {
+        banner?.classList.add('hidden');
+      }
 
       function loadGa() {
         if (!gaId || gaId === 'G-REPLACE_ME') return;
@@ -157,18 +166,25 @@ const schemas = [personSchema, serviceSchema, ...extraSchemas];
       if (stored === 'accepted') {
         loadGa();
       } else if (stored !== 'declined' && banner) {
-        banner.classList.remove('hidden');
+        showBanner();
       }
 
       acceptBtn?.addEventListener('click', () => {
         localStorage.setItem(CONSENT_KEY, 'accepted');
-        banner?.classList.add('hidden');
+        hideBanner();
         loadGa();
       });
 
       declineBtn?.addEventListener('click', () => {
         localStorage.setItem(CONSENT_KEY, 'declined');
-        banner?.classList.add('hidden');
+        hideBanner();
+      });
+
+      settingsBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          localStorage.removeItem(CONSENT_KEY);
+          window.location.reload();
+        });
       });
     </script>
 

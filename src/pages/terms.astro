@@ -4,18 +4,18 @@ import Section from '../components/Section.astro';
 import LegalProse from '../components/LegalProse.astro';
 import { getEntry, render } from 'astro:content';
 
-const entry = await getEntry('legal', 'privacy-policy');
+const entry = await getEntry('legal', 'terms-and-conditions');
 if (!entry) {
-  throw new Error('Privacy policy not found in docs/legal/');
+  throw new Error('Terms and conditions not found in docs/legal/');
 }
 
 const { Content } = await render(entry);
 ---
 
 <BaseLayout
-  title="Privacy Policy | Alar Võrk — Sales Architect"
-  description="How Abacto Consulting OÜ collects, uses, and protects your personal data on alarvork.com, in accordance with the GDPR."
-  path="/privacy-policy"
+  title="Terms & Conditions | Alar Võrk — Sales Architect"
+  description="Terms and conditions for using alarvork.com, operated by Abacto Consulting OÜ."
+  path="/terms"
   showCta={false}
 >
   <Section class="!py-16 md:!py-24">

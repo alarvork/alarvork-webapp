@@ -126,6 +126,65 @@
       transform: none !important;
     }
   }
+
+  .legal-prose {
+    @apply space-y-6 text-charcoal;
+  }
+
+  .legal-prose h1 {
+    @apply text-[2.4rem] md:text-[3rem];
+  }
+
+  .legal-prose h2 {
+    @apply mt-10 border-t border-pewter/20 pt-8 text-[1.7rem] md:text-[2.125rem];
+  }
+
+  .legal-prose h2:first-of-type {
+    @apply mt-0 border-t-0 pt-0;
+  }
+
+  .legal-prose h3 {
+    @apply mt-6 text-[1.1rem] md:text-[1.375rem];
+  }
+
+  .legal-prose p,
+  .legal-prose li {
+    @apply leading-relaxed;
+  }
+
+  .legal-prose ul,
+  .legal-prose ol {
+    @apply list-disc space-y-2 pl-5;
+  }
+
+  .legal-prose a {
+    @apply text-navy underline decoration-pewter/40 underline-offset-2 hover:decoration-navy;
+  }
+
+  .legal-prose strong {
+    @apply font-semibold text-navy;
+  }
+
+  .legal-prose blockquote {
+    @apply border-l-4 border-amber bg-white py-3 pl-4 text-sm text-charcoal;
+  }
+
+  .legal-prose table {
+    @apply w-full border-collapse text-sm;
+  }
+
+  .legal-prose th,
+  .legal-prose td {
+    @apply border border-pewter/20 px-3 py-2 align-top;
+  }
+
+  .legal-prose th {
+    @apply bg-white font-semibold text-navy;
+  }
+
+  .legal-prose hr {
+    @apply border-pewter/20;
+  }
 }
 
 @layer utilities {
