@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scheme 3 - Creative Professional Color Palette</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #2C3E50;
+            background: #FAFBFC;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #1A1A2E;
+            margin-bottom: 1rem;
+        }
+        
+        .header .subtitle {
+            font-size: 1.2rem;
+            color: #7F8C8D;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Color Grid */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .color-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(26, 26, 46, 0.08);
+            border: 1px solid rgba(127, 140, 141, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .color-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(26, 26, 46, 0.12);
+        }
+        
+        .color-swatch {
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .color-swatch::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.8s ease;
+        }
+        
+        .color-card:hover .color-swatch::before {
+            left: 100%;
+        }
+        
+        .color-info {
+            padding: 25px;
+        }
+        
+        .color-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1A1A2E;
+            margin-bottom: 8px;
+        }
+        
+        .color-hex {
+            font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', 'Courier New', monospace;
+            font-size: 16px;
+            font-weight: 600;
+            color: #7F8C8D;
+            background: #FAFBFC;
+            padding: 8px 12px;
+            border-radius: 6px;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+        
+        .color-use {
+            font-size: 14px;
+            color: #7F8C8D;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+        
+        .color-values {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(127, 140, 141, 0.1);
+        }
+        
+        .color-value {
+            text-align: center;
+        }
+        
+        .color-value-label {
+            font-size: 12px;
+            color: #7F8C8D;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+        
+        .color-value-text {
+            font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', 'Courier New', monospace;
+            font-size: 13px;
+            font-weight: 600;
+            color: #2C3E50;
+        }
+        
+        /* Usage Examples */
+        .usage-section {
+            margin-bottom: 60px;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1A1A2E;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .usage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .usage-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(26, 26, 46, 0.08);
+            border: 1px solid rgba(127, 140, 141, 0.1);
+        }
+        
+        .usage-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #1A1A2E;
+            margin-bottom: 15px;
+        }
+        
+        .button-demo {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        
+        .btn-primary {
+            background: #1A1A2E;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #0F0F1A;
+        }
+        
+        .btn-accent {
+            background: #F39C12;
+            color: white;
+        }
+        
+        .btn-accent:hover {
+            background: #E67E22;
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: #7F8C8D;
+            border: 2px solid #7F8C8D;
+        }
+        
+        .btn-secondary:hover {
+            background: #7F8C8D;
+            color: white;
+        }
+        
+        .text-demo {
+            margin-bottom: 20px;
+        }
+        
+        .text-primary {
+            color: #1A1A2E;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .text-body {
+            color: #2C3E50;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        
+        .text-secondary {
+            color: #7F8C8D;
+            font-size: 14px;
+        }
+        
+        .text-accent {
+            color: #F39C12;
+            font-weight: 600;
+        }
+        
+        /* Accessibility Info */
+        .accessibility-section {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(26, 26, 46, 0.08);
+            border-left: 6px solid #F39C12;
+        }
+        
+        .accessibility-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1A1A2E;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .contrast-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .contrast-item {
+            background: #FAFBFC;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(127, 140, 141, 0.1);
+        }
+        
+        .contrast-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #2C3E50;
+            margin-bottom: 8px;
+        }
+        
+        .contrast-ratio {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1A1A2E;
+            margin-bottom: 4px;
+        }
+        
+        .contrast-status {
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        
+        .status-aaa {
+            background: #00B894;
+            color: white;
+        }
+        
+        .status-aa {
+            background: #F39C12;
+            color: white;
+        }
+        
+        /* Download Section */
+        .download-section {
+            text-align: center;
+            margin-top: 60px;
+            padding: 40px;
+            background: #1A1A2E;
+            border-radius: 16px;
+            color: white;
+        }
+        
+        .download-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .download-subtitle {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 30px;
+        }
+        
+        .download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .download-btn {
+            background: #F39C12;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+        
+        .download-btn:hover {
+            background: #E67E22;
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .color-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .usage-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contrast-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .button-demo {
+                flex-direction: column;
+            }
+            
+            .download-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Creative Professional</h1>
+            <p class="subtitle">Scheme 3 - A sophisticated color palette that balances professionalism with warmth and creativity, perfect for agencies and creative services.</p>
+        </div>
+        
+        <!-- Color Palette -->
+        <div class="color-grid">
+            <div class="color-card">
+                <div class="color-swatch" style="background: #1A1A2E; color: white;">PRIMARY</div>
+                <div class="color-info">
+                    <div class="color-name">Midnight Navy</div>
+                    <div class="color-hex">#1A1A2E</div>
+                    <div class="color-use">Headers, primary buttons, navigation, main branding elements</div>
+                    <div class="color-values">
+                        <div class="color-value">
+                            <div class="color-value-label">RGB</div>
+                            <div class="color-value-text">26, 26, 46</div>
+                        </div>
+                        <div class="color-value">
+                            <div class="color-value-label">HSL</div>
+                            <div class="color-value-text">240°, 28%, 14%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="color-card">
+                <div class="color-swatch" style="background: #F39C12; color: white;">ACCENT</div>
+                <div class="color-info">
+                    <div class="color-name">Golden Amber</div>
+                    <div class="color-hex">#F39C12</div>
+                    <div class="color-use">Call-to-action buttons, highlights, hover states, creative elements</div>
+                    <div class="color-values">
+                        <div class="color-value">
+                            <div class="color-value-label">RGB</div>
+                            <div class="color-value-text">243, 156, 18</div>
+                        </div>
+                        <div class="color-value">
+                            <div class="color-value-label">HSL</div>
+                            <div class="color-value-text">37°, 90%, 51%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="color-card">
+                <div class="color-swatch" style="background: #7F8C8D; color: white;">SECONDARY</div>
+                <div class="color-info">
+                    <div class="color-name">Pewter Gray</div>
+                    <div class="color-hex">#7F8C8D</div>
+                    <div class="color-use">Supporting text, subtle borders, secondary buttons</div>
+                    <div class="color-values">
+                        <div class="color-value">
+                            <div class="color-value-label">RGB</div>
+                            <div class="color-value-text">127, 140, 141</div>
+                        </div>
+                        <div class="color-value">
+                            <div class="color-value-label">HSL</div>
+                            <div class="color-value-text">184°, 6%, 53%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="color-card">
+                <div class="color-swatch" style="background: #FAFBFC; color: #2C3E50;">LIGHT</div>
+                <div class="color-info">
+                    <div class="color-name">Pure Canvas</div>
+                    <div class="color-hex">#FAFBFC</div>
+                    <div class="color-use">Clean backgrounds, content areas, card backgrounds</div>
+                    <div class="color-values">
+                        <div class="color-value">
+                            <div class="color-value-label">RGB</div>
+                            <div class="color-value-text">250, 251, 252</div>
+                        </div>
+                        <div class="color-value">
+                            <div class="color-value-label">HSL</div>
+                            <div class="color-value-text">210°, 17%, 98%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="color-card">
+                <div class="color-swatch" style="background: #2C3E50; color: white;">TEXT</div>
+                <div class="color-info">
+                    <div class="color-name">Deep Charcoal</div>
+                    <div class="color-hex">#2C3E50</div>
+                    <div class="color-use">Body text, detailed content, readable text</div>
+                    <div class="color-values">
+                        <div class="color-value">
+                            <div class="color-value-label">RGB</div>
+                            <div class="color-value-text">44, 62, 80</div>
+                        </div>
+                        <div class="color-value">
+                            <div class="color-value-label">HSL</div>
+                            <div class="color-value-text">210°, 29%, 24%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Usage Examples -->
+        <div class="usage-section">
+            <h2 class="section-title">Usage Examples</h2>
+            <div class="usage-grid">
+                <div class="usage-card">
+                    <h3 class="usage-title">Button Variations</h3>
+                    <div class="button-demo">
+                        <button class="btn btn-primary">Primary Action</button>
+                        <button class="btn btn-accent">Start Project</button>
+                        <button class="btn btn-secondary">Learn More</button>
+                    </div>
+                    <p style="color: #7F8C8D; font-size: 14px;">Use Midnight Navy for primary actions, Golden Amber for important CTAs, and Pewter Gray for secondary options.</p>
+                </div>
+                
+                <div class="usage-card">
+                    <h3 class="usage-title">Typography Hierarchy</h3>
+                    <div class="text-demo">
+                        <div class="text-primary">Main Heading</div>
+                        <div class="text-body">Body text provides detailed information and maintains excellent readability across all devices and screen sizes.</div>
+                        <div class="text-secondary">Supporting text and <span class="text-accent">accent highlights</span></div>
+                    </div>
+                    <p style="color: #7F8C8D; font-size: 14px;">Clear hierarchy using color variations for different content importance levels.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Accessibility -->
+        <div class="accessibility-section">
+            <h3 class="accessibility-title">
+                <span>♿</span>
+                Accessibility & Contrast Ratios
+            </h3>
+            <p style="color: #7F8C8D; margin-bottom: 25px;">All color combinations meet or exceed WCAG accessibility standards:</p>
+            
+            <div class="contrast-grid">
+                <div class="contrast-item">
+                    <div class="contrast-label">Midnight Navy on Pure Canvas</div>
+                    <div class="contrast-ratio">15.8:1</div>
+                    <span class="contrast-status status-aaa">AAA</span>
+                </div>
+                
+                <div class="contrast-item">
+                    <div class="contrast-label">Golden Amber on Midnight Navy</div>
+                    <div class="contrast-ratio">8.1:1</div>
+                    <span class="contrast-status status-aaa">AAA</span>
+                </div>
+                
+                <div class="contrast-item">
+                    <div class="contrast-label">Deep Charcoal on Pure Canvas</div>
+                    <div class="contrast-ratio">12.6:1</div>
+                    <span class="contrast-status status-aaa">AAA</span>
+                </div>
+                
+                <div class="contrast-item">
+                    <div class="contrast-label">Pewter Gray on Pure Canvas</div>
+                    <div class="contrast-ratio">4.8:1</div>
+                    <span class="contrast-status status-aa">AA</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Download Section -->
+        <div class="download-section">
+            <h3 class="download-title">Ready to Use This Palette?</h3>
+            <p class="download-subtitle">Copy the color codes above or save this reference for your design projects</p>
+            <div class="download-buttons">
+                <a href="#" class="download-btn" onclick="copyToClipboard()">Copy CSS Variables</a>
+                <a href="#" class="download-btn" onclick="copyHexCodes()">Copy Hex Codes</a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function copyToClipboard() {
+            const cssVars = `:root {
+  --midnight-navy: #1A1A2E;
+  --golden-amber: #F39C12;
+  --pewter-gray: #7F8C8D;
+  --pure-canvas: #FAFBFC;
+  --deep-charcoal: #2C3E50;
+}`;
+            
+            navigator.clipboard.writeText(cssVars).then(() => {
+                alert('CSS variables copied to clipboard!');
+            });
+        }
+        
+        function copyHexCodes() {
+            const hexCodes = `Midnight Navy: #1A1A2E
+Golden Amber: #F39C12
+Pewter Gray: #7F8C8D
+Pure Canvas: #FAFBFC
+Deep Charcoal: #2C3E50`;
+            
+            navigator.clipboard.writeText(hexCodes).then(() => {
+                alert('Hex codes copied to clipboard!');
+            });
+        }
+    </script>
+</body>
+</html>

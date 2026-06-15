@@ -1,0 +1,24 @@
+---
+description: Build rules for the alarvork.com website
+alwaysApply: true
+---
+# Project rules — alarvork.com
+
+You are building a 5-page static marketing website for Alar Võrk (a B2B sales consultant — "Sales Architect"). Follow `BUILD_INSTRUCTIONS.md` in the repo root, working through its milestones in order. The authoritative content and design references are in `docs/`.
+
+## Non-negotiables
+- Stack: Astro 5+ with static output (no SSR adapter), TypeScript strict, Tailwind CSS via the official Astro integration. No React/Vue or other UI frameworks for content.
+- Styling: Tailwind only. Use the theme tokens defined in `tailwind.config` (Scheme 3: `navy`, `amber`, `pewter`, `canvas`, `charcoal`). Never hard-code hex values or use arbitrary `[#xxxxxx]` classes in markup. Dark sections are solid `navy` (no gradients). The Book-a-call CTA is `amber`; body text is `charcoal`.
+- Fonts: headings use `font-display` (Satoshi); body uses `font-sans` (Nunito Sans). No other fonts.
+- Components: `.astro` only, PascalCase, one per file. Reuse `BaseLayout`, `Header`, `Footer`, `CtaBand`, `ProofStrip`, `Button`, `Section`. Central constants live in `src/consts.ts`.
+- Copy: use the exact British-English text from `docs/Alar_Vork_Website_Build_Spec_2026-06-15.md` and `docs/Alar_Vork_Website_Copy_Polished_2026-06-15.md`. Sentence-case headings. Never invent or paraphrase copy. No lorem ipsum.
+- Pricing must NOT appear anywhere on the site.
+- Colour palette is fixed by `docs/scheme3_reference.html` (Scheme 3). Do not substitute colours.
+- Accessibility: semantic HTML, one `<h1>` per page, alt text on every image, visible focus states, keyboard-operable nav/form/consent.
+- Motion: vanilla JS/CSS only (no React for animation); gate every animation behind `prefers-reduced-motion: no-preference`; animate only opacity/transform; zero layout shift.
+- Each page uses `BaseLayout` with a unique title/description.
+
+## Working method
+- Complete one milestone fully (including its acceptance criteria) before starting the next.
+- Commit after each milestone with a clear message.
+- Do not introduce alternative libraries, patterns, or colours. If something is unspecified, prefer the simplest choice consistent with these rules and the build brief.
