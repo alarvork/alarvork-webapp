@@ -53,13 +53,30 @@ function initScrollReveals() {
 
     prepareHidden(el);
 
+    const rect = el.getBoundingClientRect();
+    const inViewport = rect.top < window.innerHeight && rect.bottom > 0;
+    const delay = getDelay(el, index);
+
+    // Elements already visible at load should animate immediately.
+    if (inViewport) {
+      animateReveal(el, delay);
+      return;
+    }
+
     inView(
       el,
       () => {
-        animateReveal(el, getDelay(el, index));
+        animateReveal(el, delay);
       },
       { amount: 0.2 }
     );
+
+    // Safety net: if intersection never triggers, don't leave content invisible.
+    window.setTimeout(() => {
+      if (el.style.opacity === '0') {
+        setFinalState(el);
+      }
+    }, 1400);
   });
 }
 
