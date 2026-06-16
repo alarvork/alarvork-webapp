@@ -38,7 +38,7 @@ These are placeholders in the build. Do not block on them; wire them through `sr
 - `public/fonts/Satoshi-Variable.woff2` — the Satoshi variable font file (owner supplies; reference it via `@font-face`).
 - `CALENDLY_URL`, `WEB3FORMS_KEY`, `GA_ID` — Calendly event URL, Web3Forms access key, GA4 Measurement ID.
 - Real photography to replace image placeholders.
-- GoDaddy FTP credentials, stored as GitHub repo secrets `FTP_SERVER`, `FTP_USERNAME`, `FTP_PASSWORD` (used by the deploy workflow).
+- Cloudflare API token and account ID, stored as GitHub repo secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` (used by the deploy workflow).
 
 ---
 
@@ -126,11 +126,11 @@ These are placeholders in the build. Do not block on them; wire them through `sr
 4. **Header on scroll** — vanilla: after `window.scrollY > 8`, add `.scrolled` to the sticky header (subtle bottom shadow + slightly tighter padding), throttled with `requestAnimationFrame`.
 **Acceptance:** all four effects work and feel subtle (no bounce/parallax/large movement); OS "Reduce motion" disables animation and shows final states immediately; Lighthouse (mobile) Performance ≥ 90 and CLS ≈ 0 on every page; no new dependencies; no React.
 
-### Milestone 10 — Deploy pipeline (GitHub Actions → GoDaddy FTP)
-**Goal:** A push to `main` builds and deploys to GoDaddy automatically.
+### Milestone 10 — Deploy pipeline (GitHub Actions → Cloudflare Pages)
+**Goal:** A push to `main` builds and deploys to Cloudflare Pages automatically.
 **Build:**
-- `.github/workflows/deploy.yml`: on push to `main`, checkout → set up **Node 20** → `npm ci` → `npm run build` → deploy with **`SamKirkland/FTP-Deploy-Action@v4.3.5`**, `local-dir: ./dist/`, `server-dir: /public_html/`, using secrets `FTP_SERVER`, `FTP_USERNAME`, `FTP_PASSWORD`. Use no other deploy method.
-**Acceptance:** the workflow runs green on push and the built site appears in GoDaddy `public_html`. (At go-live the owner repoints DNS per Build Spec §3, preserving the Google Workspace MX/SPF/DKIM records — email stays on Google Workspace.)
+- `.github/workflows/deploy.yml`: on push to `main`, checkout → set up **Node 22** → `npm ci` → `npm run build` → deploy with **`cloudflare/wrangler-action@v3`**, `pages deploy dist --project-name=alarvork`, using secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`. Use no other deploy method.
+**Acceptance:** the workflow runs green on push and the built site is live on Cloudflare Pages with custom domain `www.alarvork.com` (and apex redirect). Google Workspace MX/SPF/DKIM records stay in Cloudflare DNS — email unchanged.
 
 ### Milestone 11 — QA & go-live
 **Goal:** Quality gate.

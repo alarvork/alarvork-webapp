@@ -16,5 +16,5 @@ Work through the milestones in `BUILD_INSTRUCTIONS.md` in order, satisfying each
 ## Things only the human owner provides
 - The Satoshi variable font file (`public/fonts/Satoshi-Variable.woff2`).
 - Account keys/links (Calendly URL, Web3Forms access key, GA4 ID) — use the placeholders in `src/consts.ts`.
-- GoDaddy FTP secrets in GitHub (for the deploy workflow).
+- Cloudflare API token and account ID in GitHub (for the Pages deploy workflow).
 - Real photography to replace image placeholders.
